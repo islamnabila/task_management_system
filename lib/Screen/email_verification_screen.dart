@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager_practice/Screen/login_screen.dart';
 import 'package:task_manager_practice/Screen/pin_verification_screen.dart';
-
 import '../Rest Api/rest_api.dart';
 import '../Style/style.dart';
 import '../Utility/url.dart';

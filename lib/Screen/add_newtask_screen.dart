@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager_practice/Rest%20Api/network_response_class.dart';
 import 'package:task_manager_practice/Rest%20Api/rest_api.dart';
-
-import '../Style/newtask_style.dart';
 import '../Style/style.dart';
 import '../Utility/url.dart';
 import 'new_task_screen.dart';

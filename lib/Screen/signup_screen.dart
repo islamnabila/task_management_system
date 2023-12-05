@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager_practice/Rest%20Api/rest_api.dart';
 import 'package:task_manager_practice/Screen/login_screen.dart';
-
 import '../Rest Api/network_response_class.dart';
 import '../Style/style.dart';
 import '../Utility/url.dart';

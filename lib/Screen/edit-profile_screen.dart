@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -7,8 +6,6 @@ import 'package:task_manager_practice/Rest%20Api/network_response_class.dart';
 import 'package:task_manager_practice/Rest%20Api/rest_api.dart';
 import 'package:task_manager_practice/controller/auth_controller.dart';
 import 'package:task_manager_practice/model/user_model.dart';
-
-import '../Style/newtask_style.dart';
 import '../Style/style.dart';
 import '../Utility/url.dart';
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager_practice/Screen/progress_task_screen.dart';
 import 'package:task_manager_practice/Style/style.dart';
-
 import 'cancelled_task_screen.dart';
 import 'completed_task_screen.dart';
 import 'new_task_screen.dart';

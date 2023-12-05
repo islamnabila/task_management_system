@@ -7,7 +7,6 @@ import 'package:task_manager_practice/Screen/signup_screen.dart';
 import 'package:task_manager_practice/Style/style.dart';
 import 'package:task_manager_practice/controller/auth_controller.dart';
 import 'package:task_manager_practice/model/user_model.dart';
-
 import '../Utility/url.dart';
 
 
