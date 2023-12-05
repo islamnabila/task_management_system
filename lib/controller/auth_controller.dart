@@ -21,16 +21,7 @@ class AuthController{
     user = model;
   }
 
-  static Future<void> recoverEmailVerification(String verificationToken)async{
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    await sharedPreferences.setString("EmailVerification",verificationToken );
-  }
 
-  static Future<void> recoverOTPVerification(UserModel model)async{
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    await sharedPreferences.setString("OTPVerification", jsonEncode(model.toJson()));
-    user = model;
-  }
 
  static Future<void> initializeUserCache()async{
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
