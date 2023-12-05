@@ -1,21 +1,72 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:task_manager_practice/Screen/login_screen.dart';
 import 'package:task_manager_practice/Screen/set_password_screen.dart';
 import 'package:task_manager_practice/Screen/signup_screen.dart';
+import 'package:http/http.dart' as http;
 
 
+import '../Rest Api/api_client.dart';
 import '../Style/style.dart';
+import '../Utility/utility.dart';
 
 class PinVerificationScreen extends StatefulWidget {
   const PinVerificationScreen({super.key});
+
+
 
   @override
   State<PinVerificationScreen> createState() => _PinVerificationScreenState();
 }
 
 class _PinVerificationScreenState extends State<PinVerificationScreen> {
+
+
+  Future<bool> VerifyOTPRequest(Email,OTP) async{
+    var URL=Uri.parse("${BaseURL}/RecoverVerifyOTP/${Email}/${OTP}");
+    var response= await  http.get(URL,headers:RequestHeader);
+    var ResultCode=response.statusCode;
+    var ResultBody=json.decode(response.body);
+    if(ResultCode==200 && ResultBody['status']=="success"){
+      await WriteOTPVerification(OTP);
+      print("Success");
+
+      return true;
+    }
+    else{
+      print("fail");
+      return false;
+    }
+  }
+
+  Map<String,String> FormValues={"otp":""};
+  bool Loading=false;
+
+  InputOnChange(MapKey, Textvalue){
+    setState(() {
+      FormValues.update(MapKey, (value) => Textvalue);
+    });
+  }
+
+  FormOnSubmit() async{
+    if(FormValues['otp']!.length!=6){
+    }
+    else{
+      setState(() {Loading=true;});
+      String? emailAddress=await ReadUserData('EmailVerification');
+      bool res=await VerifyOTPRequest(emailAddress,FormValues['otp']);
+      if(res==true){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>SetPasswordScreen()));
+      }
+      else{
+        setState(() {Loading=false;});
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +87,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                     GreyTextStyle("A 6 digit verification pin will send your emai address"),
                     SizedBox(height: MediaQuery.of(context).size.height*0.02,),
                     PinCodeTextField(
+
                       length: 6,
                       obscureText: false,
                       animationType: AnimationType.fade,
@@ -56,9 +108,9 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                       onCompleted: (v) {
                         print("Completed");
                       },
-                      onChanged: (value) {
-                       
-                      },
+                        onChanged: (value) {
+                          InputOnChange("otp",value);
+                        },
                       beforeTextPaste: (text) {
                         return true;
                       }, appContext: context,
@@ -67,7 +119,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                     ElevatedButton(
                         style: ElevattedButtonStyle(),
                         onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>SetPasswordScreen(),));
+                          FormOnSubmit();
                         }, child: ButtonChildStyleText("Verify") ),
                     SizedBox(height: MediaQuery.of(context).size.height*0.07,),
                     Row(

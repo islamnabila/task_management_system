@@ -6,6 +6,8 @@ class ReuseableCard extends StatelessWidget {
     super.key, required this.count, required this.title,
   });
   final String count, title;
+
+
   @override
   Widget build(BuildContext context) {
     return Card(

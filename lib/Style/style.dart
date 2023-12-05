@@ -117,37 +117,7 @@ Text TextButtonChildStyle(text){
 
 
 //Edit Profile Photo Style
-Container PhotoContainerStyle(){
-  return Container(
-    height: 50,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(6)
-    ),
-    child: Row(
-      children: [
-        Expanded(
-          flex: 1,
-            child: Container(
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.grey,
-                borderRadius: BorderRadius.only(topLeft:Radius.circular(6), bottomLeft: Radius.circular(6))
-              ),
-              alignment: Alignment.center,
-              child: Text("Photo", style: TextStyle(color: colorWhite,fontSize: 17),),
-            )),
-        Expanded(
-          flex: 2,
-            child: Container(
-              decoration: BoxDecoration(
-                color: colorWhite,
-                borderRadius: BorderRadius.only(topRight: Radius.circular(6),bottomRight: Radius.circular(6))
-              ),
-            ))
-      ],
-    ),
-  );
-}
+
 
 //Snackbar message for signup page
 void showSnackMessage(BuildContext context, String message, [bool isError =false]){
@@ -156,3 +126,29 @@ void showSnackMessage(BuildContext context, String message, [bool isError =false
           content: Text(message),
        backgroundColor: isError? colorGreen : null));
 }
+
+
+// void SuccessToast(msg){
+//   Fluttertoast.showToast(
+//       msg: msg,
+//       gravity: ToastGravity.BOTTOM,
+//       timeInSecForIosWeb: 1,
+//       toastLength: Toast.LENGTH_SHORT,
+//       backgroundColor: colorGreen,
+//       textColor: colorWhite,
+//       fontSize: 16.0
+//   );
+// }
+//
+//
+// void ErrorToast(msg){
+//   Fluttertoast.showToast(
+//       msg: msg,
+//       gravity: ToastGravity.BOTTOM,
+//       timeInSecForIosWeb: 1,
+//       toastLength: Toast.LENGTH_SHORT,
+//       backgroundColor: Colors.red,
+//       textColor: colorWhite,
+//       fontSize: 16.0
+//   );
+// }

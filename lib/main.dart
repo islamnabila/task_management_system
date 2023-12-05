@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:task_manager_practice/Style/style.dart';
 
-import 'Screen/forget_password_screen.dart';
+import 'Screen/email_verification_screen.dart';
 import 'Screen/pin_verification_screen.dart';
 import 'Screen/signup_screen.dart';
 import 'Screen/splash_screen.dart';
@@ -15,10 +15,12 @@ void main(){
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+  static GlobalKey<NavigatorState> navigationKey = GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigationKey,
       theme: ThemeData(
         primaryColor: colorGreen,
       ),

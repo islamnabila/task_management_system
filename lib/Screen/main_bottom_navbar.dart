@@ -20,7 +20,7 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
     NewTaskScreen(),
     ProgressTaskScreen(),
     CompletedTaskScreen(),
-    CancelledTaskScreen()
+    CancelledTaskScreen(),
   ];
 
 
@@ -40,10 +40,10 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "New"),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "In Progress"),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Completed"),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Cancelled")
+          BottomNavigationBarItem(icon: Icon(Icons.abc), label: "New"),
+          BottomNavigationBarItem(icon: Icon(Icons.incomplete_circle), label: "In Progress"),
+          BottomNavigationBarItem(icon: Icon(Icons.beenhere_rounded), label: "Completed"),
+          BottomNavigationBarItem(icon: Icon(Icons.cancel), label: "Cancelled")
         ],
       ),
     );

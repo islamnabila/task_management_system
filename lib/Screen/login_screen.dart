@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager_practice/Rest%20Api/network_response_class.dart';
 import 'package:task_manager_practice/Rest%20Api/rest_api.dart';
-import 'package:task_manager_practice/Screen/forget_password_screen.dart';
+import 'package:task_manager_practice/Screen/email_verification_screen.dart';
 import 'package:task_manager_practice/Screen/main_bottom_navbar.dart';
 import 'package:task_manager_practice/Screen/signup_screen.dart';
 import 'package:task_manager_practice/Style/style.dart';
@@ -91,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       SizedBox(height: MediaQuery.of(context).size.height*0.1,),
                       Center(child: TextButton(onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (contex)=>const ForgetPasswordScreen(),));
+                        Navigator.push(context, MaterialPageRoute(builder: (contex)=>const emailVerificationScreen(),));
                       }, child: TextButtonChildStyleGrey("Forget Password?"))),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -123,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
     NetworkResponse response = await NetworkCaller().postRequest(Urls.login, body: {
       "email": _emailController.text.trim(),
       "password" : _passwordController.text,
-    });
+    }, isLogin: true,);
     _loginProgress = false;
     if(mounted){
       setState(() {});
@@ -131,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if(response.isSuccess) {
       await AuthController.saveUserInformation(
           response.jsonResponse["token"], UserModel.fromJson(response.jsonResponse["data"]));
-      // clearTextField();
+      clearTextField();
       if (mounted){
         Navigator.push(context,
             MaterialPageRoute(builder: (context) =>const MainBottomNavScreen()));

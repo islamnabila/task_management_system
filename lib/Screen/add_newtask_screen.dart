@@ -2,16 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager_practice/Rest%20Api/network_response_class.dart';
 import 'package:task_manager_practice/Rest%20Api/rest_api.dart';
-import 'package:task_manager_practice/Screen/signup_screen.dart';
 
 import '../Style/newtask_style.dart';
 import '../Style/style.dart';
 import '../Utility/url.dart';
-import 'forget_password_screen.dart';
-import 'main_bottom_navbar.dart';
+import 'new_task_screen.dart';
 
 class AddNewTaskScreen extends StatefulWidget {
-  const AddNewTaskScreen({super.key});
+  const AddNewTaskScreen({super.key, required this.onTaskCreated,});
+  final TaskCreatedCallback onTaskCreated;
 
   @override
   State<AddNewTaskScreen> createState() => _AddNewTaskScreenState();
@@ -76,7 +75,11 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
                                 replacement: Center(child: CircularProgressIndicator(),),
                                 child: ElevatedButton(
                                     style: ElevattedButtonStyle(),
-                                    onPressed: createTask,
+                                    onPressed: (){
+                                      createTask();
+                                      // Navigator.pop(context);
+                                    },
+
                                     child: ButtonChildStyle(Icons.arrow_circle_right_outlined) ),
                               ),
                             ],
@@ -116,6 +119,7 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
         if(mounted){
           showSnackMessage(context, "Create task successfully!");
         }
+        widget.onTaskCreated.call();
 
       }else{
         if(mounted){

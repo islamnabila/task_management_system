@@ -8,5 +8,10 @@ class NetworkResponse {
       {this.statusCode = -1,
         required this.isSuccess,
         this.jsonResponse,
-        this.errorMessage = "Something went wrong"});
+        this.errorMessage = "Something went wrong"
+      }){
+    if (!isSuccess) {
+      print('Raw JSON Response on Error: $jsonResponse');
+    }
+  }
 }

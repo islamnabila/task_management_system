@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:task_manager_practice/Screen/login_screen.dart';
@@ -18,33 +20,61 @@ class ProfileListTileStyle extends StatefulWidget {
 class _ProfileListTileStyleState extends State<ProfileListTileStyle> {
   @override
   Widget build(BuildContext context) {
+    // Uint8List imageBytes =
+    //     Base64Decoder().convert(AuthController.user?.photo?.trim() ?? "");
+
+    String? photoData = AuthController.user?.photo;
+    Uint8List? imageBytes;
+
+    try {
+      if (photoData != null && photoData.isNotEmpty) {
+        imageBytes = Base64Decoder().convert(photoData.trim());
+      }
+    } catch (e) {
+      print("Error decoding Base64 string: $e");
+    }
     return ListTile(
       onTap: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) =>const EditProfileScreen(),));
-
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const EditProfileScreen(),
+            ));
       },
-      leading:const CircleAvatar(
-        backgroundColor: colorWhite,
-        child: Icon(Icons.person),
+      leading: CircleAvatar(
+        child: imageBytes != null
+            ? ClipRRect(
+          borderRadius: BorderRadius.circular(50),
+            child: Image.memory(imageBytes, fit: BoxFit.cover,))
+            : const Icon(Icons.person),
       ),
-      title:Text(
+
+
+      title: Text(
         fullname,
-        style: const TextStyle(fontSize: 18, color: colorWhite),),
-      subtitle:Text(
-        AuthController.user?.email ??"", style: TextStyle(color: colorWhite),),
+        style: const TextStyle(fontSize: 18, color: colorWhite),
+      ),
+      subtitle: Text(
+        AuthController.user?.email ?? "",
+        style: TextStyle(color: colorWhite),
+      ),
       tileColor: colorGreen,
       trailing: IconButton(
-        onPressed: ()async{
+        onPressed: () async {
           await AuthController.ClearAuthData();
-          if(mounted){
-          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const LoginScreen()), (route) => false);
-        }},
-        icon:const Icon(Icons.logout),
+          if (mounted) {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
+                (route) => false);
+          }
+        },
+        icon: const Icon(Icons.logout),
       ),
     );
   }
-  String get fullname{
+
+  String get fullname {
     return "${AuthController.user?.firstName ?? ""} ${AuthController.user?.lastName ?? ")"}";
   }
 }

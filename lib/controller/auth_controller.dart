@@ -13,7 +13,23 @@ class AuthController{
     await sharedPreferences.setString("user", jsonEncode(model.toJson()));
     token= t;
     user = model;
+  }
 
+  static Future<void> updateUserInformation(UserModel model)async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.setString("user", jsonEncode(model.toJson()));
+    user = model;
+  }
+
+  static Future<void> recoverEmailVerification(String verificationToken)async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.setString("EmailVerification",verificationToken );
+  }
+
+  static Future<void> recoverOTPVerification(UserModel model)async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.setString("OTPVerification", jsonEncode(model.toJson()));
+    user = model;
   }
 
  static Future<void> initializeUserCache()async{
