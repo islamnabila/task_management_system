@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager_practice/Rest%20Api/network_response_class.dart';
 import 'package:task_manager_practice/Rest%20Api/rest_api.dart';
@@ -99,7 +98,7 @@ bool getNewTaskInProgress = false;
               ),
             );
           },
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
         ),
         body: SafeArea(
           child: Column(
@@ -107,7 +106,7 @@ bool getNewTaskInProgress = false;
               ListTyleStyle(),
               Visibility(
                 visible: getTaskCountSummaryListInProgress == false && (taskCountSummaryModel.taskCountList?.isNotEmpty ?? false),
-                replacement: LinearProgressIndicator(),
+                replacement: const LinearProgressIndicator(),
                 child: SizedBox(
                   height: 120,
                   child: ListView.builder(
@@ -125,7 +124,7 @@ bool getNewTaskInProgress = false;
               Expanded(
                   child: Visibility(
                 visible: getNewTaskInProgress == false,
-                replacement: Center(
+                replacement: const Center(
                   child: CircularProgressIndicator(),
                 ),
                 child: RefreshIndicator(

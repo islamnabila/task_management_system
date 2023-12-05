@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager_practice/Screen/progress_task_screen.dart';
 import 'package:task_manager_practice/Style/style.dart';
@@ -16,11 +15,11 @@ class MainBottomNavScreen extends StatefulWidget {
 
 class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
   int _selectedIndex = 0;
-  List<Widget> _screen =[
-    NewTaskScreen(),
-    ProgressTaskScreen(),
-    CompletedTaskScreen(),
-    CancelledTaskScreen(),
+  final List<Widget> _screen =[
+    const NewTaskScreen(),
+    const ProgressTaskScreen(),
+    const CompletedTaskScreen(),
+    const CancelledTaskScreen(),
   ];
 
 
@@ -36,10 +35,11 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
 
           });
         },
+
         selectedItemColor: colorGreen,
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.abc), label: "New"),
           BottomNavigationBarItem(icon: Icon(Icons.incomplete_circle), label: "In Progress"),
           BottomNavigationBarItem(icon: Icon(Icons.beenhere_rounded), label: "Completed"),

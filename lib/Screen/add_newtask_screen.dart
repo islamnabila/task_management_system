@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager_practice/Rest%20Api/network_response_class.dart';
 import 'package:task_manager_practice/Rest%20Api/rest_api.dart';
@@ -17,9 +16,9 @@ class AddNewTaskScreen extends StatefulWidget {
 }
 
 class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
-  TextEditingController _subjectController = TextEditingController();
-  TextEditingController _desController = TextEditingController();
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _subjectController = TextEditingController();
+  final TextEditingController _desController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   bool _createTaskInProgress = false;
 
@@ -72,7 +71,7 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
                               SizedBox(height: MediaQuery.of(context).size.height*0.02,),
                               Visibility(
                                 visible: _createTaskInProgress == false,
-                                replacement: Center(child: CircularProgressIndicator(),),
+                                replacement: const Center(child: CircularProgressIndicator(),),
                                 child: ElevatedButton(
                                     style: ElevattedButtonStyle(),
                                     onPressed: (){

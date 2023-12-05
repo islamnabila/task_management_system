@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../Rest Api/network_response_class.dart';
 import '../Rest Api/rest_api.dart';
 import '../Style/newtask_style.dart';
+import '../Style/style.dart';
 import '../Utility/url.dart';
 import '../model/task_list_model.dart';
 import '../widget/newtask_card_item.dart';

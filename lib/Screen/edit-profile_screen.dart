@@ -22,10 +22,10 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _fNameController = TextEditingController();
-  TextEditingController _lNameController = TextEditingController();
-  TextEditingController _mobileController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _fNameController = TextEditingController();
+  final TextEditingController _lNameController = TextEditingController();
+  final TextEditingController _mobileController = TextEditingController();
   TextEditingController _passController = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -150,7 +150,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                               Visibility(
                                 visible: _updateProfileInProgress == false,
-                                replacement: Center(
+                                replacement: const Center(
                                   child: CircularProgressIndicator(),
                                 ),
                                 child: ElevatedButton(
@@ -239,12 +239,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               flex: 1,
               child: Container(
                 height: 50,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.grey,
                     borderRadius: BorderRadius.only(topLeft:Radius.circular(6), bottomLeft: Radius.circular(6))
                 ),
                 alignment: Alignment.center,
-                child: Text("Photo", style: TextStyle(color: colorWhite,fontSize: 17),),
+                child: const Text("Photo", style: TextStyle(color: colorWhite,fontSize: 17),),
               )),
           Expanded(
               flex: 2,
@@ -259,15 +259,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   }
                 },
                 child: Container(
-                  padding: EdgeInsets.only(left: 16),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.only(left: 16),
+                  decoration: const BoxDecoration(
                       color: colorWhite,
                       borderRadius: BorderRadius.only(topRight: Radius.circular(6),bottomRight: Radius.circular(6)),
                   ),
                   child: Visibility(
                     visible: photo == null,
                       replacement:Text(photo?.name ?? "") ,
-                      child: Text("Select a photo", style: TextStyle(fontSize: 17),)),
+                      child: const Text("Select a photo", style: TextStyle(fontSize: 17),)),
                 ),
               ))
         ],

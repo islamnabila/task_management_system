@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ReuseableCard extends StatelessWidget {
@@ -15,7 +14,7 @@ class ReuseableCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 32),
         child: Column(
           children: [
-            Text(count, style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+            Text(count, style: const TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
             Text(title)
           ],
         ),

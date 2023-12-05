@@ -96,6 +96,6 @@ class NetworkCaller {
   Future<void> backTologin() async {
     await AuthController.ClearAuthData();
     Navigator.pushAndRemoveUntil(
-        MyApp.navigationKey.currentContext!, MaterialPageRoute(builder: (context)=>LoginScreen()), (route) => false);
+        MyApp.navigationKey.currentContext!, MaterialPageRoute(builder: (context)=>const LoginScreen()), (route) => false);
   }
 }

@@ -28,7 +28,7 @@ class _ProfileListTileStyleState extends State<ProfileListTileStyle> {
 
     try {
       if (photoData != null && photoData.isNotEmpty) {
-        imageBytes = Base64Decoder().convert(photoData.trim());
+        imageBytes = const Base64Decoder().convert(photoData.trim());
       }
     } catch (e) {
       print("Error decoding Base64 string: $e");
@@ -44,7 +44,7 @@ class _ProfileListTileStyleState extends State<ProfileListTileStyle> {
       leading: CircleAvatar(
         child: imageBytes != null
             ? ClipRRect(
-          borderRadius: BorderRadius.circular(50),
+          borderRadius: BorderRadius.circular(30),
             child: Image.memory(imageBytes, fit: BoxFit.cover,))
             : const Icon(Icons.person),
       ),
@@ -56,7 +56,7 @@ class _ProfileListTileStyleState extends State<ProfileListTileStyle> {
       ),
       subtitle: Text(
         AuthController.user?.email ?? "",
-        style: TextStyle(color: colorWhite),
+        style: const TextStyle(color: colorWhite),
       ),
       tileColor: colorGreen,
       trailing: IconButton(
@@ -69,7 +69,7 @@ class _ProfileListTileStyleState extends State<ProfileListTileStyle> {
                 (route) => false);
           }
         },
-        icon: const Icon(Icons.logout),
+        icon: const Icon(Icons.logout, color: colorWhite,),
       ),
     );
   }

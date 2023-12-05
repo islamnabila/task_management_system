@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager_practice/Rest%20Api/rest_api.dart';
 
@@ -48,8 +47,9 @@ class _NewtaskCardItemState extends State<NewtaskCardItem> {
 
   @override
   Widget build(BuildContext context) {
+    Color chipBackgroundColor = getChipBackgroundColor(widget.task.status);
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -57,30 +57,32 @@ class _NewtaskCardItemState extends State<NewtaskCardItem> {
           children: [
             Text(
               widget.task.title ?? "",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
-            Text(widget.task.description ?? ""),
-            Text("Date: ${widget.task.createdDate ?? ""}"),
+            const SizedBox(height: 5,),
+            Text(widget.task.description ?? "", style: const TextStyle(fontSize: 15.5),),
+            const SizedBox(height: 5,),
+            Text("Date: ${widget.task.createdDate ?? ""}",style: const TextStyle(fontSize: 15.5),),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Chip(
                   label: Text(
                     widget.task.status ?? "New",
-                    style: TextStyle(color: colorWhite),
+                    style: const TextStyle(color: colorWhite),
                   ),
-                  backgroundColor: colorGreen,
+                  backgroundColor: chipBackgroundColor,
                 ),
                 Wrap(
                   children: [
                     IconButton(onPressed: () {
                       showDeleteStatusModal();
-                    }, icon: Icon(Icons.delete)),
+                    }, icon: const Icon(Icons.delete, color: Colors.red,)),
                     IconButton(
                         onPressed: () {
                           showUpdateStatusModal();
                         },
-                        icon: Icon(Icons.edit))
+                        icon: const Icon(Icons.edit, color: colorGreen,))
                   ],
                 )
               ],
@@ -94,7 +96,7 @@ class _NewtaskCardItemState extends State<NewtaskCardItem> {
   void showUpdateStatusModal() {
     List<ListTile> items = TaskStatus.values
         .map((e) => ListTile(
-              title: Text("${e.name}"),
+              title: Text(e.name),
               onTap: () {
                 updateTaskStatus(e.name);
                 Navigator.pop(context);
@@ -112,7 +114,7 @@ class _NewtaskCardItemState extends State<NewtaskCardItem> {
                 children: [
                   TextButton(onPressed: () {
                     Navigator.pop(context);
-                  }, child: Text("Cancel")),
+                  }, child: const Text("Cancel")),
 
                 ],
               )
@@ -127,27 +129,31 @@ class _NewtaskCardItemState extends State<NewtaskCardItem> {
         builder: (context) {
           return AlertDialog(
             title: const Text("Delete Status"),
-            content: Column(mainAxisSize: MainAxisSize.min,),
             actions: [
-              ButtonBar(
-                children: [
-                  TextButton(onPressed: () {
-                    Navigator.pop(context);
-                  }, child: Text("Cancel")),
+              TextButton(onPressed: (){
+                Navigator.pop(context);
+              }, child: const Text("Cancel")),
+              TextButton(onPressed: (){
+                deleteTask();
+                Navigator.pop(context);
+              }, child: const Text("Delete"))
 
-                ],
-              ),
-              ButtonBar(
-                children: [
-                  TextButton(onPressed: () {
-                    deleteTask();
-                    Navigator.pop(context);
-                  }, child: Text("Delete")),
-
-                ],
-              )
             ],
           );
         });
+  }
+  Color getChipBackgroundColor(String? status) {
+    switch (status) {
+      case 'New':
+        return Colors.orange;
+      case 'Progress':
+        return Colors.deepPurple;
+      case 'Completed':
+        return Colors.blue.shade600;
+      case 'Cancelled':
+        return Colors.red;
+      default:
+        return Colors.orange;
+    }
   }
 }

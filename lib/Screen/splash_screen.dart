@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager_practice/Screen/login_screen.dart';
 import 'package:task_manager_practice/Screen/main_bottom_navbar.dart';

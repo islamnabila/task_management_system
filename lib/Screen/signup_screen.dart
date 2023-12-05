@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager_practice/Rest%20Api/rest_api.dart';
 import 'package:task_manager_practice/Screen/login_screen.dart';
@@ -128,7 +127,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       Visibility(
                         visible: _signupInprogress == false,
-                        replacement: Center(
+                        replacement: const Center(
                           child: CircularProgressIndicator(),
                         ),
                         child: ElevatedButton(

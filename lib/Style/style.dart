@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
+import '../widget/profilelisttile_style_screen.dart';
+
 const colorGreen = Color.fromRGBO(33, 191, 115, 1);
 const colorWhite = Color.fromRGBO(255, 255, 255, 1);
 
@@ -124,31 +126,10 @@ void showSnackMessage(BuildContext context, String message, [bool isError =false
   ScaffoldMessenger.of(context).showSnackBar(
        SnackBar(
           content: Text(message),
-       backgroundColor: isError? colorGreen : null));
+       backgroundColor: isError? Colors.red : null));
 }
 
 
-// void SuccessToast(msg){
-//   Fluttertoast.showToast(
-//       msg: msg,
-//       gravity: ToastGravity.BOTTOM,
-//       timeInSecForIosWeb: 1,
-//       toastLength: Toast.LENGTH_SHORT,
-//       backgroundColor: colorGreen,
-//       textColor: colorWhite,
-//       fontSize: 16.0
-//   );
-// }
-//
-//
-// void ErrorToast(msg){
-//   Fluttertoast.showToast(
-//       msg: msg,
-//       gravity: ToastGravity.BOTTOM,
-//       timeInSecForIosWeb: 1,
-//       toastLength: Toast.LENGTH_SHORT,
-//       backgroundColor: Colors.red,
-//       textColor: colorWhite,
-//       fontSize: 16.0
-//   );
-// }
+ProfileListTileStyle ListTyleStyle(){
+  return ProfileListTileStyle();
+}

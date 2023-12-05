@@ -1,16 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:task_manager_practice/Style/style.dart';
 
-import 'Screen/email_verification_screen.dart';
-import 'Screen/pin_verification_screen.dart';
-import 'Screen/signup_screen.dart';
 import 'Screen/splash_screen.dart';
 
 void main(){
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-  runApp(MyApp());
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -25,7 +21,7 @@ class MyApp extends StatelessWidget {
         primaryColor: colorGreen,
       ),
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home:const SplashScreen(),
     );
   }
 }
